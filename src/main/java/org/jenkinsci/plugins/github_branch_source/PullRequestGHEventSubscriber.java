@@ -113,8 +113,8 @@ public class PullRequestGHEventSubscriber extends GHEventsSubscriber {
                     .parseEventPayload(new StringReader(event.getPayload()), GHEventPayload.PullRequest.class);
             String action = p.getAction();
             String repoUrl = p.getRepository().getHtmlUrl().toExternalForm();
-            LOGGER.log(Level.FINE, "Received {0} for {1} from {2}",
-                    new Object[]{event.getGHEvent(), repoUrl, event.getOrigin()}
+            LOGGER.log(Level.FINE, "Received {0} for {1} from {2}, action: {3}",
+                    new Object[]{event.getGHEvent(), repoUrl, event.getOrigin(), action}
             );
             Matcher matcher = REPOSITORY_NAME_PATTERN.matcher(repoUrl);
             if (matcher.matches()) {
